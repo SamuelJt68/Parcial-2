@@ -78,18 +78,6 @@ export class AppoimentService {
 
     }
     
-    async updateCitas(dto: UpdateAppoimentDto): Promise<{ message: string }> {
-        const appoiment = await this.appoimentRepository.findOne({ where: { id } });
-        if (!appoiment) {
-            throw new NotFoundException('Cita no encontrada');
-        }
-
-        const currentStatus = (appoiment ).status.toString().toUpperCase();
-        if (currentStatus !== "pending") {
-            throw new ConflictException("Solo se puede actualizar si la cita está en estado PENDING");
-        }
-
-    }
 
     async deleteCita(id: string): Promise<{ message: string }> {
         const appoiment = await this.appoimentRepository.findOne({ where: { id } });
