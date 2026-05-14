@@ -6,7 +6,7 @@ import { Role } from './role.entity';
 import { AssignRolesDto } from './dto/assignRoles.dto';
 import { CreateRoleDto } from './dto/createRole.dto';
 import { throwError } from 'rxjs';
-import { Controller, Post, Get, Body, UseGuards, Param, Patch, Req, Delete } from '@nestjs/common';
+import { Controller, Get, Body, UseGuards, Param, Patch, Req, Delete } from '@nestjs/common';
 import { RegisterDto } from 'src/auth/dto/register.dto';
 
 @Injectable()
@@ -17,7 +17,6 @@ export class RolesService {
         @InjectRepository(User) private userRepository: Repository<User>,
     ){}
 
-    @Post()
     async createRole(@Body() dto: CreateRoleDto): Promise<{ message: string, roleId: string}> {
         const existingNameRole = await this.roleRepository.findOne({where: { role_name: dto.role_name } })
         if (existingNameRole){
