@@ -28,10 +28,6 @@ export class AppoimentController {
     return this.appoimentService.getCitasPorDoctor(id);
   }
 
-  @Patch(":id")
-  async updateCita(@Param(":id") id: string, @Body() dto: UpdateAppoimentDto) {
-    return this.appoimentService.updateCitas({ ...(dto as any), id } as any);
-  }
 
   @Delete(":id")
   async deleteCita(@Param(":id") id: string) {
